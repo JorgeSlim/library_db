@@ -1,0 +1,79 @@
+LIBRARY MANAGEMENT SYSTEM - SETUP GUIDE
+======================================
+
+1. UPLOAD PROJECT TO GITHUB
+----------------------------
+A. Create a GitHub Repository:
+   1. Go to https://github.com and log in
+   2. Click "+" → "New repository"
+   3. Name: "LibraryManagementSystem"
+   4. Set to Public/Private
+   5. Click "Create repository"
+
+B. Upload via Git:
+   1. Install Git from https://git-scm.com/downloads
+   2. Open terminal in project folder (LibraryManagementSystem/)
+   3. Run these commands:
+      git init
+      git add .
+      git commit -m "Initial commit"
+      git remote add origin https://github.com/yourusername/LibraryManagementSystem.git
+      git push -u origin main
+
+2. ADD COLLABORATORS
+--------------------
+   1. Go to Repository → Settings → Collaborators
+   2. Click "Add people"
+   3. Enter GitHub usernames
+   4. Click "Add collaborator"
+
+3. SETUP FOR DEVELOPERS
+-----------------------
+A. Clone the Project:
+   git clone https://github.com/yourusername/LibraryManagementSystem.git
+   cd LibraryManagementSystem
+
+B. Database Setup:
+   1. Install MySQL from https://dev.mysql.com/downloads/
+   2. Create database (run in MySQL):
+      CREATE DATABASE library_db;
+      USE library_db;
+      [Paste SQL from database_setup.sql]
+
+C. Run the Application:
+   1. Install JDK 8+ from https://adoptium.net/
+   2. Navigate to src/ folder
+   3. Compile:
+      javac -d ../bin -cp "../lib/mysql-connector-java-8.0.23.jar" Main.java model/*.java view/*.java
+   4. Run:
+      java -cp "../bin;../lib/mysql-connector-java-8.0.23.jar" Main
+      (Use : instead of ; on Linux/Mac)
+
+4. PROJECT STRUCTURE
+--------------------
+LibraryManagementSystem/
+├── src/
+│   ├── model/       # Database and model classes
+│   ├── view/        # UI components
+│   └── Main.java    # Entry point
+├── lib/
+│   └── mysql-connector-java-8.0.23.jar
+├── SETUP_GUIDE.txt  # This file
+└── database_setup.sql # SQL initialization script
+
+5. TROUBLESHOOTING
+------------------
+- "Class not found": Check classpath includes the MySQL connector JAR
+- MySQL connection errors: Verify credentials in Database.java
+- Compilation errors: Ensure JDK is installed (javac -version)
+
+6. DEFAULT CREDENTIALS
+----------------------
+Admin Login:
+- Username: admin
+- Password: admin123
+
+MySQL Connection:
+- URL: jdbc:mysql://localhost:3306/library_db
+- Username: root
+- Password: [your MySQL password]

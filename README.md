@@ -1,0 +1,105 @@
+# library_db
+LIBRARY MANAGEMENT SYSTEM - RUN GUIDE
+====================================
+
+This guide explains how to compile and run the project from the command line.
+
+PREREQUISITES:
+1. Java JDK 8 or later installed
+2. MySQL Server installed and running
+3. MySQL Connector/J (mysql-connector-java-8.0.23.jar) in the lib/ directory
+4. Database created (see DATABASE.sql)
+
+PROJECT STRUCTURE:
+LibraryManagementSystem/
+├── src/
+│   ├── model/
+│   ├── view/
+│   └── Main.java
+├── lib/
+│   └── mysql-connector-java-8.0.23.jar
+└── RUN_GUIDE.txt
+
+1. COMPILATION INSTRUCTIONS
+--------------------------
+
+For Linux/Mac:
+-------------
+# Navigate to project root directory
+cd /path/to/LibraryManagementSystem
+
+# Create bin directory if it doesn't exist
+mkdir -p bin
+
+# Compile all Java files
+javac -d bin -cp "lib/mysql-connector-j-9.3.0.jar" src/Main.java src/model/*.java src/view/*.java
+
+For Windows:
+-----------
+:: Navigate to project root directory
+cd C:\path\to\LibraryManagementSystem
+
+:: Create bin directory if it doesn't exist
+mkdir bin
+
+:: Compile all Java files
+javac -d bin -cp "lib\mysql-connector-j-9.3.0.jar" src\Main.java src\model\*.java src\view\*.java
+
+2. RUNNING THE APPLICATION
+-------------------------
+
+For Linux/Mac:
+-------------
+java -cp "bin:lib/mysql-connector-j-9.3.0.jar" Main
+
+For Windows:
+-----------
+java -cp "bin;lib\mysql-connector-j-9.3.0.jar" Main
+
+3. TROUBLESHOOTING
+-----------------
+
+Common Issues and Solutions:
+
+1. "Class not found" errors:
+   - Verify all .java files were compiled successfully
+   - Check the classpath includes both bin directory and MySQL connector JAR
+   - Ensure package declarations in source files are correct
+
+2. Database connection issues:
+   - Verify MySQL server is running
+   - Check connection parameters in Database.java
+   - Ensure the library_db database exists
+
+3. File not found errors:
+   - Verify the lib/mysql-connector-java-8.0.23.jar exists
+   - Check file paths in commands match your directory structure
+
+4. ALTERNATIVE: COMPILE AND RUN SCRIPTS
+-------------------------------------
+
+For convenience, you can create these scripts:
+
+compile_and_run.sh (Linux/Mac):
+-------------------------------
+#!/bin/bash
+mkdir -p bin
+javac -d bin -cp "lib/mysql-connector-java-8.0.23.jar" src/Main.java src/model/*.java src/view/*.java
+java -cp "bin:lib/mysql-connector-java-8.0.23.jar" Main
+
+compile_and_run.bat (Windows):
+-----------------------------
+@echo off
+mkdir bin
+javac -d bin -cp "lib\mysql-connector-java-8.0.23.jar" src\Main.java src\model\*.java src\view\*.java
+java -cp "bin;lib\mysql-connector-java-8.0.23.jar" Main
+pause
+
+5. DEFAULT LOGIN CREDENTIALS
+---------------------------
+Username: admin
+Password: admin123
+
+NOTES:
+- First run will initialize the database with sample data
+- Make sure to configure database credentials in Database.java if using non-default settings
